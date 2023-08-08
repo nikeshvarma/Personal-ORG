@@ -16,6 +16,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: NPM Install
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
       - name: Install Salesforce CLI (sfdx)
         run: |
           wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
