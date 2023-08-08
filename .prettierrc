@@ -1,0 +1,35 @@
+{
+	"trailingComma": "none",
+	"useTabs": true,
+	"tabWidth": 4,
+	"printWidth": 180,
+	"bracketSameLine": true,
+	"overrides": [
+		{
+			"files": "**/lwc/**/*.html",
+			"options": {
+				"parser": "lwc",
+				"printWidth": 180
+			}
+		},
+		{
+			"files": "**/aura/**/*.{cmp,page,component}",
+			"options": {
+				"parser": "lwc",
+				"printWidth": 180
+			}
+		},
+		{
+			"files": "**/*.{cls,trigger,apex}",
+			"options": {
+				"apexInsertFinalNewline": true
+			}
+		},
+		{
+			"files": "*.email",
+			"options": {
+				"parser": "html"
+			}
+		}
+	]
+}
