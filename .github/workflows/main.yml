@@ -1,9 +1,12 @@
-name: Validate Changes
+name: Validate Changes on Push
 
 on:
   push:
     branches:
       - main  # Change this to your desired branch
+
+    paths: 
+      - 'force-app/**'
 
 jobs:
   install-sfdx:
@@ -23,3 +26,7 @@ jobs:
 
       - name: Verify Salesforce CLI installation
         run: sfdx --version
+
+        # ESlint
+      - name: 'Lint Lightning Web Components'
+        run: npm run lint:lwc
