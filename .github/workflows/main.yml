@@ -1,0 +1,25 @@
+name: Validate Changes
+
+on:
+  push:
+    branches:
+      - main  # Change this to your desired branch
+
+jobs:
+  install-sfdx:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Salesforce CLI (sfdx)
+        run: |
+          wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+          mkdir sfdx-cli
+          tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
+          ./sfdx-cli/install
+          export PATH=./sfdx-cli/bin:$PATH
+
+      - name: Verify Salesforce CLI installation
+        run: sfdx --version
