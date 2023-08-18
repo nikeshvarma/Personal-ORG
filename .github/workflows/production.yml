@@ -27,9 +27,9 @@ jobs:
 
       - name: Autorize ORG
         run: |
-          'echo "${{ secrets.SALESFORCE_AUTH_URL }}" > authFile.json'
-          'echo cat ./authFile.json'
-          'echo sf org login sfdx-url -f authFile.json -s'
+          "${{ secrets.SALESFORCE_AUTH_URL }}" > authfile.json
+          echo cat ./authFile.json
+          echo sf org login sfdx-url -f authfile.json -s
 
       - name: Run Test
         run: sf apex run test -l RunSpecifiedTests -n CustomFileUploadCtrlTest -r human -y -c -d ./
