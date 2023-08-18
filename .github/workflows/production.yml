@@ -25,7 +25,17 @@ jobs:
       - name: Verify Salesforce CLI installation
         run: sf --version
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
+      - name: Autorize ORG
+        run: |
+          'echo "${{ secrets.SALESFORCE_AUTH_URL }}" > authFile.json'
+          sf org login sfdx-url --sfdx-url-file authFile.json
+
+      - name: Run Test
+        run: sf apex run test -l RunSpecifiedTests -n CustomFileUploadCtrlTest -r human -y -c -d ./
+
+      - name: Upload code coverage for Apex to Codecov.io
+        uses: codecov/codecov-action@v2
+        with:
+          flags: Apex
         env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
