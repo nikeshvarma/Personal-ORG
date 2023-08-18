@@ -9,7 +9,7 @@ on:
       - 'force-app/**'
 
 jobs:
-  install-sfdx:
+  BUILD:
     runs-on: ubuntu-latest
 
     steps:
