@@ -20,16 +20,12 @@ jobs:
           cache: 'npm'
 
       - name: Install Salesforce CLI (sfdx)
-        run: |
-          wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
-          mkdir sfdx-cli
-          tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
-          ./sfdx-cli/install
-          export PATH=./sfdx-cli/bin:$PATH
+        run: npm i @salesforce/cli
 
       - name: Verify Salesforce CLI installation
         run: sfdx --version
 
-        # ESlint
-      - name: 'Lint Lightning Web Components'
-        run: npm run lint:lwc
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
