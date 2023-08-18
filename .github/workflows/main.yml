@@ -20,10 +20,10 @@ jobs:
           cache: 'npm'
 
       - name: Install Salesforce CLI (sfdx)
-        run: npm i @salesforce/cli
+        run: npm install -g @salesforce/cli
 
       - name: Verify Salesforce CLI installation
-        run: sfdx --version
+        run: sf --version
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
